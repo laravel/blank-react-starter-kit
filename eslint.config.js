@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
@@ -36,6 +37,19 @@ export default [
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
         },
+    },
+    {
+        ...importPlugin.flatConfigs.recommended,
+        settings: {
+            'import/resolver': {
+                typescript: true,
+                node: true,
+            },
+        },
+    },
+    {
+        ...importPlugin.flatConfigs.typescript,
+        files: ['**/*.{ts,tsx}'],
     },
     {
         ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js'],
