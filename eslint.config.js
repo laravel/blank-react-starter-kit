@@ -1,8 +1,8 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
@@ -45,6 +45,19 @@ export default [
                 typescript: true,
                 node: true,
             },
+        },
+        rules: {
+            'import/order': [
+                'error',
+                {
+                    groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+                    'newlines-between': 'always',
+                    alphabetize: {
+                        order: 'asc',
+                        caseInsensitive: true,
+                    },
+                },
+            ],
         },
     },
     {
